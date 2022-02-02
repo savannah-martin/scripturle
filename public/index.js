@@ -1,5 +1,7 @@
 const letterInputs = document.querySelectorAll("input.letter");
-const wordElement = document.querySelector(".word");
+const guessText = document.querySelector(".guess");
+const guessInput = document.getElementById("guess");
+
 let word = "";
 
 
@@ -12,7 +14,7 @@ letterInputs.forEach(input => input.addEventListener("keyup", (e)=> {
     }
     else if(e.key === "Backspace") {
         word = word.slice(0, -1);
-        wordElement.textContent = word;
+        guessText.textContent = word;
 
         if (input.previousElementSibling) {
             input.previousElementSibling.focus();
@@ -21,7 +23,8 @@ letterInputs.forEach(input => input.addEventListener("keyup", (e)=> {
     }
     else {
         word += input.value;
-        wordElement.textContent = word;
+        guessText.textContent = word;
+        guessInput.value = word;
         
         e.target.value && input.nextElementSibling.focus();
 
