@@ -2,15 +2,44 @@ let express = require("express");
 let path = require("path");
 let app = express();
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
 app.use(express.static(path.join(__dirname, "public")));
 
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
-/* GET users listing. */
-app.get("/", function (req, res) {
-  res.send("respond with a resource");
+app.get('/', (req, res)=> {
+  res.render('index');
 });
+
+app.post("/", (req, res)=> {
+
+  let secretWord = "HEBREWS".toUpperCase();
+
+  // extract the guess value from the body
+  const guess = req.body.guess.toUpperCase();
+
+  let result = "";
+
+  if(guess === secretWord) {
+    result = ['correct', 'correct', 'correct','correct','correct','correct','correct'];
+  }
+  else {
+    result = ['incorrect', 'misplaced', 'incorrect','incorrect','incorrect','misplaced','misplaced'];
+  }
+
+  console.log(result);
+
+  // return the guess
+  res.render('index', result);
+
+});
+
+
+/* EXAMPLE */
 
 let mark = { first: "Mark", last: "Hamill", age: "70" };
 
@@ -63,6 +92,7 @@ app.post('/example', (req,res) => {
   res.send(page);
 
 });
+
 
 const port = process.env.PORT || 3000;
 const hostname = process.env.hostname || "localhost";
