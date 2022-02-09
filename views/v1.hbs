@@ -7,63 +7,25 @@
   </header>
 
   <main>
+
+    {{!-- 
+    {{#if result }}
+    <h2> {{ result }} </h2>
+    {{/if}} --}}
+
     <div class="row">
-      <input
+      {{#each result}}
+
+        <input
         type="text"
         text=""
-        class="letter correct"
+        class="letter {{this}}"
         maxlength="1"
         disabled
         value="T"
       />
-      <input
-        type="text"
-        text=""
-        class="letter"
-        maxlength="1"
-        disabled
-        value="H"
-      />
-      <input
-        type="text"
-        text=""
-        class="letter"
-        maxlength="1"
-        disabled
-        value="U"
-      />
-      <input
-        type="text"
-        text=""
-        class="letter misplaced"
-        maxlength="1"
-        disabled
-        value="N"
-      />
-      <input
-        type="text"
-        text=""
-        class="letter"
-        maxlength="1"
-        disabled
-        value="D"
-      />
-      <input
-        type="text"
-        text=""
-        class="letter"
-        maxlength="1"
-        disabled
-        value="E"
-      />
-      <input
-        type="text"
-        text=""
-        class="letter"
-        maxlength="1"
-        disabled
-        value="R"
-      />
+
+      {{/each}}
     </div>
     <div class="row">
       <input type="text" text="" class="letter" maxlength="1" autofocus />
@@ -78,7 +40,7 @@
     <div class="wordContainer">
       {{!-- <h2 class="guess"></h2> --}}
 
-      <form action="/" method="post">
+      <form action="/v1" method="post">
         <p>
           <input type="hidden" name="guess" id="guess" />
         </p>
