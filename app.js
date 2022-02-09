@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/v1', (req, res)=> {
-  res.render('index');
+  res.render('v1');
 });
 
 app.post("/v1", (req, res)=> {
