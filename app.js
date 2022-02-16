@@ -16,20 +16,39 @@ app.get('/v1', (req, res)=> {
 });
 
 app.post("/v1", (req, res)=> {
-
+ 
   let secretWord = "hebrews".toUpperCase();
 
   // extract the guess value from the body
   const guess = req.body.guess.toUpperCase();
 
-  let result = []; // = computeResult();
+  let result = computeResult();
 
-  if(guess === secretWord) {
-    result = ['correct', 'correct', 'correct','correct','correct','correct','correct'];
+  function computeResult() {
+    
+    let result = [];
+
+    for (let letter = 0; letter < 7; letter++) {
+      if (guess[letter] === secretWord[letter]) {
+        answer = 'correct';
+      }
+      else if (secretWord.includes(guess[letter])){
+        answer = 'misplaced';
+      }
+      else {
+        answer = 'incorrect';
+      }
+      result.push({letter: guess[letter], status: answer});
+    }
+    return result;
   }
-  else {
-    result = ['correct', 'misplaced', 'incorrect','incorrect','incorrect','misplaced','misplaced'];
-  }
+
+  // if(guess === secretWord) {
+  //   result = ['correct', 'correct', 'correct','correct','correct','correct','correct'];
+  // }
+  // else {
+  //   result = ['correct', 'misplaced', 'incorrect','incorrect','incorrect','misplaced','misplaced'];
+  // }
 
   console.log(result);
 
