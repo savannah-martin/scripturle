@@ -34,3 +34,5 @@ letterInputs.forEach(input => input.addEventListener("keyup", (e)=> {
         }
     }
 }));
+
+// document.querySelectorAll("input.letter")fa-bible
